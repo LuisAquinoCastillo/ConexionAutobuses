@@ -12,6 +12,7 @@ public class ControlAutobus {
 
     @Autowired RepositorioAutobus repoABus;
 
+
     // Metodo para buscar todos los registros
     @CrossOrigin
     @RequestMapping(value = "/autobus", method = RequestMethod.GET, headers = {"Accept=application/json"})
@@ -33,6 +34,14 @@ public class ControlAutobus {
     public Estatus actualizar(@PathVariable String idAutobus, @PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
         repoABus.save(new Autobus(idAutobus,marcaAutobus,tipoAutobus,numeroAsientos));
         return new Estatus(true, "Actualizacion con exito");
+    }
+
+    //Metodo para borrar registro
+    @CrossOrigin
+    @RequestMapping(value = "/autobus/{idAutobus}", method = RequestMethod.DELETE, headers = {"Accept=application/json"})
+    public Estatus borrarAutobus(@PathVariable String idAutobus){
+        repoABus.delete(new Autobus(idAutobus));
+        return new Estatus(true, "Borrado con exito");
     }
 
 }
