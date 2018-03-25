@@ -1,7 +1,6 @@
 package unitec.pf.is.org.ConexionAutobuses;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -26,6 +25,14 @@ public class ControlAutobus {
     public Estatus guardarAutobus(@PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
         repoABus.save(new Autobus(marcaAutobus, tipoAutobus, numeroAsientos));
         return new Estatus(true,"Guardado con exito");
+    }
+
+    //Metodo para actualizar
+    @CrossOrigin
+    @RequestMapping(value = "/autobus/{idAutobus}/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.PUT, headers = {"Accept=application/json"})
+    public Estatus actualizar(@PathVariable String idAutobus, @PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
+        repoABus.save(new Autobus(idAutobus,marcaAutobus,tipoAutobus,numeroAsientos));
+        return new Estatus(true, "Actualizacion con exito");
     }
 
 }
