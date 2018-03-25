@@ -5,11 +5,11 @@ import org.springframework.data.annotation.Id;
 public class Autobus {
 
     @Id
-    String idAutobus;
+    private String idAutobus;
 
-    String marcaAutobus;
-    String tipoAutobus;
-    String numeroAsientos;
+    private String marcaAutobus;
+    private String tipoAutobus;
+    private String numeroAsientos;
 
     public String getIdAutobus() {
         return idAutobus;
