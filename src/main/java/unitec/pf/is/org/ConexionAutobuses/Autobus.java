@@ -5,7 +5,8 @@ import org.springframework.data.annotation.Id;
 public class Autobus {
 
     @Id
-    Integer idAutobus;
+    private Integer idAutobus;
+
     String marcaAutobus;
     String tipoAutobus;
     String numeroAsientos;
