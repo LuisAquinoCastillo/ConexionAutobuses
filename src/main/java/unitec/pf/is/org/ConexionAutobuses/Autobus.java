@@ -5,25 +5,25 @@ import org.springframework.data.annotation.Id;
 public class Autobus {
 
     @Id
-    private Integer idAutobus;
+    String idAutobus;
 
     String marcaAutobus;
     String tipoAutobus;
     String numeroAsientos;
 
-    public Integer getIdAutobus() {
+    public String getIdAutobus() {
         return idAutobus;
     }
 
     //Constructor para buscar por ID
 
-    public Autobus(Integer idAutobus) {
+    public Autobus(String idAutobus) {
         this.idAutobus = idAutobus;
     }
 
     //Constructor para actualizar
 
-    public Autobus(Integer idAutobus, String marcaAutobus, String tipoAutobus, String numeroAsientos) {
+    public Autobus(String idAutobus, String marcaAutobus, String tipoAutobus, String numeroAsientos) {
         this.idAutobus = idAutobus;
         this.marcaAutobus = marcaAutobus;
         this.tipoAutobus = tipoAutobus;
@@ -40,7 +40,7 @@ public class Autobus {
 
     //Getters y Setters
 
-    public void setIdAutobus(Integer idAutobus) {
+    public void setIdAutobus(String idAutobus) {
         this.idAutobus = idAutobus;
     }
 

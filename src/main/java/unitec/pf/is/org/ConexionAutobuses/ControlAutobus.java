@@ -20,11 +20,12 @@ public class ControlAutobus {
         return (ArrayList<Autobus>)repoABus.findAll();
     }
 
-    //Metodo para buscar por id
+    //Metodo para guardar
     @CrossOrigin
-    @RequestMapping(value = "/autobus/{idAutobus}", method = RequestMethod.GET, headers = {"Accept=application/json"})
-    public Autobus buscarPorId(Integer idAutobus){
-        return repoABus.findOne(idAutobus);
+    @RequestMapping(value = "/autobus/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.POST, headers = {"Accept=application/json"})
+    public Estatus guardarAutobus(@PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
+        repoABus.save(new Autobus(marcaAutobus,tipoAutobus,numeroAsientos));
+        return new Estatus(true,"Guardado con exito");
     }
 
 }
