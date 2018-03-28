@@ -1,7 +1,8 @@
 package unitec.pf.is.org.ConexionAutobuses;
 
-import org.springframework.data.repository.CrudRepository;
 
-public interface RepositorioAutobus extends CrudRepository {
+import org.springframework.data.mongodb.repository.MongoRepository;
+
+public interface RepositorioAutobus extends MongoRepository<String, Autobus> {
 
 }
