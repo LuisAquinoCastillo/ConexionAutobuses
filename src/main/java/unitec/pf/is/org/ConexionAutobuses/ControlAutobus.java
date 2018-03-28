@@ -17,7 +17,7 @@ public class ControlAutobus {
     @Autowired RepositorioAutobus repoABus;
 
 
-    // Metodo para buscar todos los registros
+    // Metodo para buscar todos los registro
     @RequestMapping(value = "/autobus", method = RequestMethod.GET, headers = {"Accept=application/json"})
     public ArrayList<Autobus> buscarTodos(){
         return (ArrayList<Autobus>)repoABus.findAll();
