@@ -1,7 +1,9 @@
 package unitec.pf.is.org.ConexionAutobuses;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+@Document(collection = "conductor")
 public class Conductor {
 
     @Id
