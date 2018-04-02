@@ -14,7 +14,7 @@ public class ControlConductor {
     @Autowired RepositorioConductor repoConduc;
 
     @CrossOrigin
-    @RequestMapping(value = {"/conductor"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/conductor", method = RequestMethod.GET, headers = {"Accept=application/json"})
     public ArrayList<Conductor> buscarTodos(){
         return (ArrayList<Conductor>)repoConduc.findAll();
     }
