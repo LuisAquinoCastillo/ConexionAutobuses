@@ -7,6 +7,10 @@ public class Autobus {
     @Id
     private String idAutobus;
 
+    public Autobus(){
+
+    }
+
     private String marcaAutobus;
     private String tipoAutobus;
     private String numeroAsientos;
