@@ -37,4 +37,10 @@ public class ControlConductor {
         return new Estatus(true, "Actualización exitosa");
     }
 
+    @CrossOrigin
+    @RequestMapping(value = {"/conductor/{id}"}, method = RequestMethod.DELETE, headers = {"Accept=application/json"})
+    public Estatus borrar(@PathVariable String id){
+        repoConduc.delete(new Conductor(id));
+        return new Estatus(true, "Borrado exitoso");
+    }
 }
