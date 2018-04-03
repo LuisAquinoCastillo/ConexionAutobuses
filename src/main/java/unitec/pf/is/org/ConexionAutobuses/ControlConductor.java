@@ -29,18 +29,18 @@ public class ControlConductor {
     @CrossOrigin
     @RequestMapping(value = {"{nombre}/{apellido_pat}/{apellido_mat}/{edad}/{sexo}/{idAutobus}"},
     method = RequestMethod.POST, headers = {"Accept=application/json"})
-    public Estatus insertar(@PathVariable String nombre, @PathVariable String apellido_pat, @PathVariable String apelledp_mat,
+    public Estatus insertar(@PathVariable String nombre, @PathVariable String apellido_pat, @PathVariable String apellido_mat,
                             @PathVariable String edad, @PathVariable String sexo, @PathVariable String idAutobus){
-        repoConduc.save(new Conductor(nombre,apellido_pat,apellido_pat,edad,sexo,idAutobus));
+        repoConduc.save(new Conductor(nombre,apellido_pat,apellido_mat,edad,sexo,idAutobus));
         return new Estatus(true, "Guardado con exito");
     }
 
     @CrossOrigin
     @RequestMapping(value = {"{idConductor}/{nombre}/{apellido_pat}/{apellido_mat}/{edad}/{sexo}/{idAutobus}"},
     method = RequestMethod.PUT, headers = {"Accept=application/json"})
-    public Estatus actualizar(@PathVariable String idConductor, @PathVariable String nombre, @PathVariable String apellido_pat, @PathVariable String apelledp_mat,
+    public Estatus actualizar(@PathVariable String idConductor, @PathVariable String nombre, @PathVariable String apellido_pat, @PathVariable String apellido_mat,
                               @PathVariable String edad, @PathVariable String sexo, @PathVariable String idAutobus){
-        repoConduc.save(new Conductor(idConductor,nombre,apellido_pat,apelledp_mat,edad,sexo,idAutobus));
+        repoConduc.save(new Conductor(idConductor,nombre,apellido_pat,apellido_mat,edad,sexo,idAutobus));
         return new Estatus(true, "Actualización exitosa");
     }
 
