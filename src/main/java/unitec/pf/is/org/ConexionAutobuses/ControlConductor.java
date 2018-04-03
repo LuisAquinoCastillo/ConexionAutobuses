@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -17,6 +18,12 @@ public class ControlConductor {
     @RequestMapping(value = {"/conductor"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
     public ArrayList<Conductor> buscarTodos(){
         return (ArrayList<Conductor>)repoConduc.findAll();
+    }
+
+    @CrossOrigin
+    @RequestMapping(value = {"/conductor/{idConductor}"},method = RequestMethod.GET, headers = {"Accept=application/json"})
+    public Optional<Conductor> buscarPorId(@PathVariable String idConductor){
+        return repoConduc.findById(idConductor);
     }
 
     @CrossOrigin
