@@ -9,7 +9,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api")
+@RequestMapping(value="/api")
 public class ControlConductor {
 
     @Autowired RepositorioConductor repoConduc;
