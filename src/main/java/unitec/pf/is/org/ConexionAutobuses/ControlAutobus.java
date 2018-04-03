@@ -11,9 +11,9 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@CrossOrigin
 @RequestMapping("/api")
 public class ControlAutobus {
+
 
     @Autowired RepositorioAutobus repoABus;
 
