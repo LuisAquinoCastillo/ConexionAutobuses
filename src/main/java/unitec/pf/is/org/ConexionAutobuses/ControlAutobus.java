@@ -36,7 +36,7 @@ public class ControlAutobus {
     @CrossOrigin
     @RequestMapping(value = "/Autobus/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.POST, headers = {"Accept=application/json"})
     public Estatus guardarAutobus(@PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
-        repoABus.save(new Autobus(marcaAutobus, tipoAutobus, numeroAsientos));
+        repoABus.insert(new Autobus(marcaAutobus, tipoAutobus, numeroAsientos));
         return new Estatus(true,"Guardado con exito");
     }
 
