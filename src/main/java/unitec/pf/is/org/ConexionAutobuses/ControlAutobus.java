@@ -20,21 +20,21 @@ public class ControlAutobus {
 
     // Metodo para buscar todos los registro
     @CrossOrigin
-    @RequestMapping(value = "/autobus", method = RequestMethod.GET, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/Autobus", method = RequestMethod.GET, headers = {"Accept=application/json"})
     public ArrayList<Autobus> buscarTodos(){
         return (ArrayList<Autobus>)repoABus.findAll();
     }
 
     //Metodo para buscar por id
     @CrossOrigin
-    @RequestMapping(value = {"/autobus/{idAutobus}"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
+    @RequestMapping(value = {"/Autobus/{idAutobus}"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
     public Optional<Autobus> buscarPorId (@PathVariable String idAutobus){
         return repoABus.findById(idAutobus);
     }
 
     //Metodo para guardar
     @CrossOrigin
-    @RequestMapping(value = "/autobus/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.POST, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/Autobus/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.POST, headers = {"Accept=application/json"})
     public Estatus guardarAutobus(@PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
         repoABus.save(new Autobus(marcaAutobus, tipoAutobus, numeroAsientos));
         return new Estatus(true,"Guardado con exito");
@@ -42,7 +42,7 @@ public class ControlAutobus {
 
     //Metodo para actualizar
     @CrossOrigin
-    @RequestMapping(value = "/autobus/{idAutobus}/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.PUT, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/Autobus/{idAutobus}/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.PUT, headers = {"Accept=application/json"})
     public Estatus actualizar(@PathVariable String idAutobus, @PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
         repoABus.save(new Autobus(idAutobus,marcaAutobus,tipoAutobus,numeroAsientos));
         return new Estatus(true, "Actualizacion con exito");
@@ -50,7 +50,7 @@ public class ControlAutobus {
 
     //Metodo para borrar registro
     @CrossOrigin
-    @RequestMapping(value = "/autobus/{idAutobus}", method = RequestMethod.DELETE, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/Autobus/{idAutobus}", method = RequestMethod.DELETE, headers = {"Accept=application/json"})
     public Estatus borrarAutobus(@PathVariable String idAutobus){
         repoABus.delete(new Autobus(idAutobus));
         return new Estatus(true, "Borrado con exito");
