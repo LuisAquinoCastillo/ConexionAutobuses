@@ -47,7 +47,7 @@ public class ControlConductor {
     }
 
     @CrossOrigin
-    @RequestMapping(value = {"/{id}/"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
+    @RequestMapping(value = {"/{id}/borrar"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
     public Estatus borrar(@PathVariable String id){
         repoConduc.delete(new Conductor(id));
         return new Estatus(true, "Borrado exitoso");
