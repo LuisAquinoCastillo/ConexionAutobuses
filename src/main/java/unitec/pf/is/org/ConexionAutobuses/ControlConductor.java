@@ -30,7 +30,7 @@ public class ControlConductor {
 
     @CrossOrigin
     @RequestMapping(value = {"/{nombre}/{apellido_pat}/{apellido_mat}/{edad}/{sexo}/{idAutobus}"},
-    method = RequestMethod.POST, headers = {"Accept=application/json"})
+    method = RequestMethod.GET, headers = {"Accept=application/json"})
     public Estatus insertar(@PathVariable String nombre, @PathVariable String apellido_pat, @PathVariable String apellido_mat,
                             @PathVariable String edad, @PathVariable String sexo, @PathVariable String idAutobus){
         repoConduc.save(new Conductor(nombre,apellido_pat,apellido_mat,edad,sexo,idAutobus));
