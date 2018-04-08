@@ -8,7 +8,7 @@ import java.util.Date;
 public class Roles {
 
     @Id
-    String idRol;
+    Integer idRol;
     String terminalOrigen;
     String terminalDestino;
     String horaSalida;
@@ -17,7 +17,7 @@ public class Roles {
 
     }
 
-    public Roles(String idRol) {
+    public Roles(Integer idRol) {
         this.idRol = idRol;
     }
 
@@ -30,7 +30,7 @@ public class Roles {
         this.horaLlegada = horaLlegada;
     }
 
-    public Roles(String idRol, String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada) {
+    public Roles(Integer idRol, String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada) {
         this.idRol = idRol;
         this.terminalOrigen = terminalOrigen;
         this.terminalDestino = terminalDestino;
@@ -38,11 +38,11 @@ public class Roles {
         this.horaLlegada = horaLlegada;
     }
 
-    public String getIdRol() {
+    public Integer getIdRol() {
         return idRol;
     }
 
-    public void setIdRol(String idRol) {
+    public void setIdRol(Integer idRol) {
         this.idRol = idRol;
     }
 
