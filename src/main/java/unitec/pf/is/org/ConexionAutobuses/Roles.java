@@ -1,7 +1,9 @@
 package unitec.pf.is.org.ConexionAutobuses;
 
-import java.util.concurrent.TimeUnit;
 import org.springframework.data.annotation.Id;
+
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Roles {
 
@@ -9,30 +11,31 @@ public class Roles {
     String idRol;
     String terminalOrigen;
     String terminalDestino;
-    TimeUnit horaSalida;
-    TimeUnit horaLlegada;
+    String horaSalida;
 
     public Roles(){
 
     }
 
-    public Roles(String idRol, String terminalOrigen, String terminalDestino, TimeUnit horaSalida, TimeUnit horaLlegada) {
-        this.idRol = idRol;
-        this.terminalOrigen = terminalOrigen;
-        this.terminalDestino = terminalDestino;
-        this.horaSalida = horaSalida;
-        this.horaLlegada = horaLlegada;
-    }
-
-    public Roles(String terminalOrigen, String terminalDestino, TimeUnit horaSalida, TimeUnit horaLlegada) {
-        this.terminalOrigen = terminalOrigen;
-        this.terminalDestino = terminalDestino;
-        this.horaSalida = horaSalida;
-        this.horaLlegada = horaLlegada;
-    }
-
     public Roles(String idRol) {
         this.idRol = idRol;
+    }
+
+    String horaLlegada;
+
+    public Roles(String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada) {
+        this.terminalOrigen = terminalOrigen;
+        this.terminalDestino = terminalDestino;
+        this.horaSalida = horaSalida;
+        this.horaLlegada = horaLlegada;
+    }
+
+    public Roles(String idRol, String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada) {
+        this.idRol = idRol;
+        this.terminalOrigen = terminalOrigen;
+        this.terminalDestino = terminalDestino;
+        this.horaSalida = horaSalida;
+        this.horaLlegada = horaLlegada;
     }
 
     public String getIdRol() {
@@ -59,19 +62,19 @@ public class Roles {
         this.terminalDestino = terminalDestino;
     }
 
-    public TimeUnit getHoraSalida() {
+    public String getHoraSalida() {
         return horaSalida;
     }
 
-    public void setHoraSalida(TimeUnit horaSalida) {
+    public void setHoraSalida(String horaSalida) {
         this.horaSalida = horaSalida;
     }
 
-    public TimeUnit getHoraLlegada() {
+    public String getHoraLlegada() {
         return horaLlegada;
     }
 
-    public void setHoraLlegada(TimeUnit horaLlegada) {
+    public void setHoraLlegada(String horaLlegada) {
         this.horaLlegada = horaLlegada;
     }
 }
