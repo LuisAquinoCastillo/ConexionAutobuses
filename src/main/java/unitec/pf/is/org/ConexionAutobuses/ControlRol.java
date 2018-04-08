@@ -24,7 +24,7 @@ public class ControlRol {
     //Buscar ROL por ID
     @CrossOrigin
     @RequestMapping(value = {"/{idRol}"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
-    public Optional<Roles> buscarPorId( Integer idRol){
+    public Optional<Roles> buscarPorId( @PathVariable Integer idRol){
         String id=Integer.toString(idRol);
         return repoRol.findById(id);
     }
@@ -45,7 +45,7 @@ public class ControlRol {
     //Actualizar ROL
     @CrossOrigin
     @RequestMapping(value = {"/{idRol}/{terminalOrigen}/{terminalDestino}/{horaSalida}/{horaLlegada}"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
-    public Estatus actualizarRol(Integer idRol, @PathVariable String terminaOrigen, @PathVariable String terminalDestino,
+    public Estatus actualizarRol(@PathVariable Integer idRol, @PathVariable String terminaOrigen, @PathVariable String terminalDestino,
                                  @PathVariable String horaSalida, @PathVariable String horaLlegada){
         try{
             String id=Integer.toString(idRol);
@@ -59,7 +59,7 @@ public class ControlRol {
     //Borrar ROL
     @CrossOrigin
     @RequestMapping(value = {"/{idRol}/borrar"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
-    public Estatus borrarRol(Integer idRol){
+    public Estatus borrarRol(@PathVariable Integer idRol){
         try{
             String id=Integer.toString(idRol);
             repoRol.delete(new Roles(id));

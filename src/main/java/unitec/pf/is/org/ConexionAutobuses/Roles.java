@@ -1,8 +1,7 @@
 package unitec.pf.is.org.ConexionAutobuses;
 
-import javafx.application.Preloader;
+
 import org.springframework.data.annotation.Id;
-import org.bson.types.ObjectId;
 
 public class Roles {
 
