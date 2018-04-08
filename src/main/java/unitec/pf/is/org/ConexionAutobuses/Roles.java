@@ -1,14 +1,13 @@
 package unitec.pf.is.org.ConexionAutobuses;
 
+import javafx.application.Preloader;
 import org.springframework.data.annotation.Id;
-
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import org.bson.types.ObjectId;
 
 public class Roles {
 
     @Id
-    Integer idRol;
+    String idRol;
     String terminalOrigen;
     String terminalDestino;
     String horaSalida;
@@ -17,7 +16,7 @@ public class Roles {
 
     }
 
-    public Roles(Integer idRol) {
+    public Roles(String idRol) {
         this.idRol = idRol;
     }
 
@@ -30,7 +29,7 @@ public class Roles {
         this.horaLlegada = horaLlegada;
     }
 
-    public Roles(Integer idRol, String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada) {
+    public Roles(String idRol, String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada) {
         this.idRol = idRol;
         this.terminalOrigen = terminalOrigen;
         this.terminalDestino = terminalDestino;
@@ -38,11 +37,11 @@ public class Roles {
         this.horaLlegada = horaLlegada;
     }
 
-    public Integer getIdRol() {
+    public String getIdRol() {
         return idRol;
     }
 
-    public void setIdRol(Integer idRol) {
+    public void setIdRol(String idRol) {
         this.idRol = idRol;
     }
 
