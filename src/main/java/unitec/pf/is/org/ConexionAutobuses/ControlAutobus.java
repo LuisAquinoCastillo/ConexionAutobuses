@@ -11,7 +11,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(value="/api")
+@CrossOrigin
+@RequestMapping(value="/api/autobus")
 public class ControlAutobus {
 
 
@@ -20,39 +21,54 @@ public class ControlAutobus {
 
     // Metodo para buscar todos los registro
     @CrossOrigin
-    @RequestMapping(value = "/Autobus", method = RequestMethod.GET, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/", method = RequestMethod.GET, headers = {"Accept=application/json"})
     public ArrayList<Autobus> buscarTodos(){
         return (ArrayList<Autobus>)repoABus.findAll();
     }
 
     //Metodo para buscar por id
     @CrossOrigin
-    @RequestMapping(value = {"/Autobus/{idAutobus}"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
-    public Optional<Autobus> buscarPorId (@PathVariable String idAutobus){
-        return repoABus.findById(idAutobus);
+    @RequestMapping(value = {"/{idAutobus}"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
+    public Optional<Autobus> buscarPorId (@PathVariable Integer idAutobus){
+        String id=Integer.toString(idAutobus);
+        return repoABus.findById(id);
     }
 
     //Metodo para guardar
     @CrossOrigin
-    @RequestMapping(value = "/Autobus/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.POST, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.POST, headers = {"Accept=application/json"})
     public Estatus guardarAutobus(@PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
-        repoABus.insert(new Autobus(marcaAutobus, tipoAutobus, numeroAsientos));
+        try {
+            repoABus.insert(new Autobus(marcaAutobus, tipoAutobus, numeroAsientos));
+        }catch (Exception e){
+            return new Estatus(false, "Error: "+e);
+        }
         return new Estatus(true,"Guardado con exito");
     }
 
     //Metodo para actualizar
     @CrossOrigin
-    @RequestMapping(value = "/Autobus/{idAutobus}/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.PUT, headers = {"Accept=application/json"})
-    public Estatus actualizar(@PathVariable String idAutobus, @PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
-        repoABus.save(new Autobus(idAutobus,marcaAutobus,tipoAutobus,numeroAsientos));
+    @RequestMapping(value = "/{idAutobus}/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.PUT, headers = {"Accept=application/json"})
+    public Estatus actualizar(@PathVariable Integer idAutobus, @PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
+        try {
+            String id=Integer.toString(idAutobus);
+            repoABus.save(new Autobus(id, marcaAutobus, tipoAutobus, numeroAsientos));
+        }catch (Exception e){
+            return new Estatus(false,"Error: "+e);
+        }
         return new Estatus(true, "Actualizacion con exito");
     }
 
     //Metodo para borrar registro
     @CrossOrigin
-    @RequestMapping(value = "/Autobus/{idAutobus}", method = RequestMethod.DELETE, headers = {"Accept=application/json"})
-    public Estatus borrarAutobus(@PathVariable String idAutobus){
-        repoABus.delete(new Autobus(idAutobus));
+    @RequestMapping(value = "/{idAutobus}/borrar", method = RequestMethod.DELETE, headers = {"Accept=application/json"})
+    public Estatus borrarAutobus(@PathVariable Integer idAutobus){
+        try {
+            String id=Integer.toString(idAutobus);
+            repoABus.delete(new Autobus(id));
+        }catch (Exception e){
+            return new Estatus(false, "Error: "+e);
+        }
         return new Estatus(true, "Borrado con exito");
     }
 

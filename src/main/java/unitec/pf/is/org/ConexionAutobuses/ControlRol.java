@@ -36,24 +36,24 @@ public class ControlRol {
     public Estatus guardarRol(@PathVariable String terminalOrigen, @PathVariable String terminalDestino, @PathVariable String horaSalida, @PathVariable String horaLlegada ){
         try {
             repoRol.save(new Roles(terminalOrigen, terminalDestino, horaSalida, horaLlegada));
-            return new Estatus(true, "Rol guardado con exito");
         }catch (Exception e){
             return new Estatus(false,"Error: "+e);
         }
+        return new Estatus(true, "Rol guardado con exito");
     }
 
     //Actualizar ROL
     @CrossOrigin
     @RequestMapping(value = {"/{idRol}/{terminalOrigen}/{terminalDestino}/{horaSalida}/{horaLlegada}"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
-    public Estatus actualizarRol(@PathVariable Integer idRol, @PathVariable String terminaOrigen, @PathVariable String terminalDestino,
+    public Estatus actualizarRol(@PathVariable Integer idRol, @PathVariable String terminalOrigen, @PathVariable String terminalDestino,
                                  @PathVariable String horaSalida, @PathVariable String horaLlegada){
         try{
             String id=Integer.toString(idRol);
-            repoRol.save(new Roles(id,terminaOrigen,terminalDestino,horaSalida,horaLlegada));
-            return new Estatus(true,"Actualizacion exitosa");
+            repoRol.save(new Roles(id,terminalOrigen,terminalDestino,horaSalida,horaLlegada));
         }catch (Exception e){
             return new Estatus(false, "Erro: "+e);
         }
+        return new Estatus(true,"Actualizacion exitosa");
     }
 
     //Borrar ROL
@@ -63,10 +63,10 @@ public class ControlRol {
         try{
             String id=Integer.toString(idRol);
             repoRol.delete(new Roles(id));
-            return new Estatus(true, "Borrado exitoso");
         }catch (Exception e){
             return new Estatus(false, "Error: "+e);
         }
+        return new Estatus(true, "Borrado exitoso");
     }
 
 }
