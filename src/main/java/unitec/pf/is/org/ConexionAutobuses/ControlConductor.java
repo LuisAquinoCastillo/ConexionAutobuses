@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/api/Conductor")
+@RequestMapping("/api/conductor")
 public class ControlConductor {
 
     @Autowired RepositorioConductor repoConduc;
@@ -24,8 +24,9 @@ public class ControlConductor {
 
     @CrossOrigin
     @RequestMapping(value = {"/{idConductor}"},method = RequestMethod.GET, headers = {"Accept=application/json"})
-    public Optional<Conductor> buscarPorId(@PathVariable String idConductor){
-        return repoConduc.findById(idConductor);
+    public Optional<Conductor> buscarPorId(@PathVariable Integer idConductor){
+        String id=Integer.toString(idConductor);
+        return repoConduc.findById(id);
     }
 
     @CrossOrigin
@@ -33,23 +34,37 @@ public class ControlConductor {
     method = RequestMethod.GET, headers = {"Accept=application/json"})
     public Estatus insertar(@PathVariable String nombre, @PathVariable String apellido_pat, @PathVariable String apellido_mat,
                             @PathVariable String edad, @PathVariable String sexo, @PathVariable String idAutobus){
-        repoConduc.save(new Conductor(nombre,apellido_pat,apellido_mat,edad,sexo,idAutobus));
+        try {
+            repoConduc.save(new Conductor(nombre, apellido_pat, apellido_mat, edad, sexo, idAutobus));
+        }catch (Exception e){
+            return new Estatus(false,"Error: "+e);
+        }
         return new Estatus(true, "Guardado con exito");
     }
 
     @CrossOrigin
     @RequestMapping(value = {"/{idConductor}/{nombre}/{apellido_pat}/{apellido_mat}/{edad}/{sexo}/{idAutobus}"},
     method = RequestMethod.GET, headers = {"Accept=application/json"})
-    public Estatus actualizar(@PathVariable String idConductor, @PathVariable String nombre, @PathVariable String apellido_pat, @PathVariable String apellido_mat,
+    public Estatus actualizar(@PathVariable Integer idConductor, @PathVariable String nombre, @PathVariable String apellido_pat, @PathVariable String apellido_mat,
                               @PathVariable String edad, @PathVariable String sexo, @PathVariable String idAutobus){
-        repoConduc.save(new Conductor(idConductor,nombre,apellido_pat,apellido_mat,edad,sexo,idAutobus));
+        try {
+            String id=Integer.toString(idConductor);
+            repoConduc.save(new Conductor(id, nombre, apellido_pat, apellido_mat, edad, sexo, idAutobus));
+        }catch (Exception e){
+            return new Estatus(false,"Error: ");
+        }
         return new Estatus(true, "Actualización exitosa");
     }
 
     @CrossOrigin
-    @RequestMapping(value = {"/{id}/borrar"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
-    public Estatus borrar(@PathVariable String id){
-        repoConduc.delete(new Conductor(id));
+    @RequestMapping(value = {"/{idConductor}/borrar"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
+    public Estatus borrar(@PathVariable Integer idConductor){
+        try {
+            String id=Integer.toString(idConductor);
+            repoConduc.delete(new Conductor(id));
+        }catch (Exception e){
+            return new Estatus(false,"Error: "+e);
+        }
         return new Estatus(true, "Borrado exitoso");
     }
 }
