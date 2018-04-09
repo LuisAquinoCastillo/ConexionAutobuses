@@ -36,7 +36,7 @@ public class ControlAutobus {
 
     //Metodo para guardar
     @CrossOrigin
-    @RequestMapping(value = "/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.POST, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.GET, headers = {"Accept=application/json"})
     public Estatus guardarAutobus(@PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
         try {
             repoABus.insert(new Autobus(marcaAutobus, tipoAutobus, numeroAsientos));
@@ -48,7 +48,7 @@ public class ControlAutobus {
 
     //Metodo para actualizar
     @CrossOrigin
-    @RequestMapping(value = "/{idAutobus}/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.PUT, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/{idAutobus}/{marcaAutobus}/{tipoAutobus}/{numeroAsientos}", method = RequestMethod.GET, headers = {"Accept=application/json"})
     public Estatus actualizar(@PathVariable Integer idAutobus, @PathVariable String marcaAutobus, @PathVariable String tipoAutobus, @PathVariable String numeroAsientos){
         try {
             String id=Integer.toString(idAutobus);
@@ -61,7 +61,7 @@ public class ControlAutobus {
 
     //Metodo para borrar registro
     @CrossOrigin
-    @RequestMapping(value = "/{idAutobus}/borrar", method = RequestMethod.DELETE, headers = {"Accept=application/json"})
+    @RequestMapping(value = "/{idAutobus}/borrar", method = RequestMethod.GET, headers = {"Accept=application/json"})
     public Estatus borrarAutobus(@PathVariable Integer idAutobus){
         try {
             String id=Integer.toString(idAutobus);
