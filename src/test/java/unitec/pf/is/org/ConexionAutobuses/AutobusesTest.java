@@ -87,5 +87,40 @@ public class AutobusesTest {
         id.setIdAutobus("7201");
         autobus.delete(id);
 
+        int registros=autobus.findAll().size();
+        Assert.assertEquals(0,registros);
+
+    }
+
+    /*Prueba de caja blanca "Buscar registro por ID"
+      Fecha: Viernes 13 de Abril del 2018
+      Tester: Luis Abraham Aquino Castillo
+      Requisitos: Realizar metodo donde se pueda
+                  realizar la operacin de busqueda
+                  de un registro mediante su ID.
+      Nota: Utilizacion del registro con ID 7201
+      Resultados: 1 test passed (Process finished with exit code 0)
+     */
+    @Test
+    public void buscarId(){
+
+        Autobus registro=autobus.findById("7201").get();
+        Assert.assertEquals("7201",registro.getIdAutobus());
+    }
+
+    /*Pruebas de caja blanca "Buscar todos"
+      Fecha: Viernes 13 de Abril del 2018
+      Tester: Luis Abraham Aquino Castillo
+      Requisitos: Realizar metodo donde se
+                  puedan buscar todos los
+                  registros existentes en
+                  la base de datos.
+      Resultados: 1 test passed (Proccess finished with exit code 0)
+     */
+    @Test
+    public void buscarTodos(){
+
+        int registros=autobus.findAll().size();
+        Assert.assertEquals(1,registros);
     }
 }
