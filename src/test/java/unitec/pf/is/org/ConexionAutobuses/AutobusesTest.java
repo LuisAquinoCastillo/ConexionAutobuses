@@ -123,4 +123,22 @@ public class AutobusesTest {
         int registros=autobus.findAll().size();
         Assert.assertEquals(1,registros);
     }
+
+    /*
+    Fecha: Viernes 13 de Abril del 2018
+    Tester: Luis Abraham Aquino Castillo
+    Informe final: Se realiza la prueba general a la clase AutobusesTest para observar
+                   el numero de test completados con exito
+    Resultados
+            1.- guardar --> test passed
+            2.- buscarTodos --> test passed
+            3.- actualizar --> test passed
+            4.- buscarId --> test falled
+            5.- borrar --> test passed
+    Conclusiones: El test realizado en el metodo buscar ID reporta falla ya que la organizacion de los metodos
+                  esta ordenado de tal manera que el borrado se ejecuta primero y despues la operacion buscarId
+
+                  Se realiza la busqueda individual del metodo buscarId con registro existente y el resultado
+                  tiene exito.
+     */
 }

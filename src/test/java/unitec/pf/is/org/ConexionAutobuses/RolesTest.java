@@ -9,41 +9,39 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ConductorTest {
+public class RolesTest {
 
-    @Autowired RepositorioConductor conductor;
+    @Autowired RepositorioRoles roles;
 
-    /*Prueba de caja blanca "Guardar conductor"
+    /*Prueba de caja blanca "Guardar Rol"
       Fecha: Viernes 13 de Abril del 2018
       Tester: Luis Abraham Aquino Castillo
       Requisito: Realizar metodo para poder
                  realizar la prueba de insersion
                  de un registro en la base de da-
-                 tos de conductores.
+                 tos de roles.
       Resultado: 1 test passed (Process finished with exit code 0)
      */
     @Test
     public void guardar(){
 
-        Conductor c=new Conductor();
-        c.setIdConductor("1001769");
-        c.setNombre("Juan Carlos");
-        c.setApellido_pat("Molina");
-        c.setApellido_mat("Estrada");
-        c.setEdad("43");
-        c.setSexo("H");
-        c.setIdAutobus("7201");
+        Roles r=new Roles();
+        r.setIdRol("1");
+        r.setTerminalOrigen("MEX");
+        r.setTerminalDestino("OAX");
+        r.setHoraSalida("10:30 am");
+        r.setHoraLlegada("5:30 pm");
 
-        Conductor guardar=conductor.save(c);
-        Assert.assertEquals(guardar, c);
+        Roles guardar=roles.save(r);
+        Assert.assertEquals(guardar,r);
     }
 
-    /*Prueba de caja blanca "Actualizar conductor"
+    /*Prueba de caja blanca "Actualizar Rol"
       Fecha: Viernes 13 de Abril del 2018
       Tester: Luis Abraham Aquino Castillo
       Requisito: Realizar metodo para poder actuali-
                  zar un registro de la base de datos
-                 de conductores.
+                 de roles.
       Nota: Se utilizara el registro introducido
             anteriormente.
       Resultado: 1 test passed (Process finished with exit code 0)
@@ -51,22 +49,20 @@ public class ConductorTest {
     @Test
     public void actualizar(){
 
-        Conductor c=new Conductor();
-        c.setIdConductor("1001769");
+        Roles r=new Roles();
+        r.setIdRol("1");
 
-        conductor.findById(c.idConductor);
+        roles.findById(r.idRol);
 
-        Conductor nuevoConductor=c;
-        nuevoConductor.setIdConductor(c.idConductor);
-        nuevoConductor.setNombre("Juan Carlos");
-        nuevoConductor.setApellido_pat("Molina");
-        nuevoConductor.setApellido_mat("Estrada");
-        nuevoConductor.setEdad("44");
-        nuevoConductor.setSexo("Masculino");
-        nuevoConductor.setIdAutobus("7203");
+        Roles nuevoRol=new Roles();
+        nuevoRol.setIdRol(r.idRol);
+        nuevoRol.setTerminalOrigen("PUE");
+        nuevoRol.setTerminalDestino("XAP");
+        nuevoRol.setHoraSalida("6:00 am");
+        nuevoRol.setHoraLlegada("----");
 
-        Conductor respuesta=conductor.save(nuevoConductor);
-        Assert.assertEquals(respuesta,nuevoConductor);
+        Roles respuesta=roles.save(nuevoRol);
+        Assert.assertEquals(respuesta,nuevoRol);
     }
 
     /*Prueba de caja blanca "Buscar registro por ID"
@@ -75,15 +71,15 @@ public class ConductorTest {
       Requisito: Realizar un metodo para poder reali-
                  zar la operación de busqueda de los
                  registros por ID.
-      Nota: Se utilizara el registro del conductor
-            con ID 1001769
-      Resultado: 1 test pased (Process finished with exit code 0)
+      Nota: Se utilizara el registro del rol
+            con ID 1
+      Resultado: 1 test passed (Process finished with exit code 0)
      */
     @Test
     public void buscarId(){
 
-        Conductor respuesta=conductor.findById("1001769").get();
-        Assert.assertEquals("1001769",respuesta.getIdConductor());
+        Roles respuesta=roles.findById("1").get();
+        Assert.assertEquals("1",respuesta.getIdRol());
     }
 
     /*Prueba de caja blanca "Buscar todos los registros"
@@ -97,8 +93,8 @@ public class ConductorTest {
     @Test
     public void buscarTodos(){
 
-        int todos=conductor.findAll().size();
-        Assert.assertEquals(1,todos);
+        int rolesTotales=roles.findAll().size();
+        Assert.assertEquals(1,rolesTotales);
     }
 
     /*Prueba de caja blanca "Borrar un registro"
@@ -106,24 +102,24 @@ public class ConductorTest {
       Tester: Luis Abraham Aquino Castillo
       Requisito: Realizar un metodo para poder borrar
                  un registro de la base de datos.
-      Resultado: 1 test passed (Process finished exit code 0)
+      Resultado: 1 test passed (Process finished with exit code 0)
      */
     @Test
     public void borrar(){
 
-        Conductor c=new Conductor();
-        c.setIdConductor("1001769");
+        Roles r=new Roles();
+        r.setIdRol("1");
 
-        conductor.delete(c);
+        roles.delete(r);
 
-        int respuesta=conductor.findAll().size();
+        int respuesta=roles.findAll().size();
         Assert.assertEquals(0,respuesta);
     }
 
-     /*
+    /*
     Fecha: Viernes 13 de Abril del 2018
     Tester: Luis Abraham Aquino Castillo
-    Informe final: Se realiza la prueba general a la clase ConductorTest para observar
+    Informe final: Se realiza la prueba general a la clase RolesTest para observar
                    el numero de test completados con exito
     Resultados
             1.- guardar --> test passed
