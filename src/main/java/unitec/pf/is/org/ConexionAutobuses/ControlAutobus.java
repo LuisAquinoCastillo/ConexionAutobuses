@@ -1,11 +1,8 @@
 package unitec.pf.is.org.ConexionAutobuses;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -70,6 +67,21 @@ public class ControlAutobus {
             return new Estatus(false, "Error: "+e);
         }
         return new Estatus(true, "Borrado con exito");
+    }
+
+    //Guardar
+    @CrossOrigin
+    @RequestMapping(value = {"/"}, method = RequestMethod.POST, headers = {"Accept=application/json"})
+    public Estatus guardarJSON(@RequestBody String json)throws Exception{
+
+        ObjectMapper mapper=new ObjectMapper();
+        Autobus autobus=mapper.readValue(json,Autobus.class);
+
+        repoABus.save(autobus);
+        return new Estatus(true,"Guardado con exito");
+
+
+
     }
 
 }
