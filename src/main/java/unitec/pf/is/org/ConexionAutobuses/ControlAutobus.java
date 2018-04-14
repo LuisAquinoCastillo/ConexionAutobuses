@@ -80,8 +80,20 @@ public class ControlAutobus {
         repoABus.save(autobus);
         return new Estatus(true,"Guardado con exito");
 
+    }
 
+    //Actualizar
+    @CrossOrigin
+    @RequestMapping(value = {"/"}, method = RequestMethod.PUT, headers = {"Accept=application/json"})
+    public Estatus  actualizarJSON(@RequestBody String json)throws Exception{
 
+        ObjectMapper mapper=new ObjectMapper();
+        Autobus autobus=mapper.readValue(json,Autobus.class);
+
+        repoABus.findById(autobus.getIdAutobus());
+
+        repoABus.save(autobus);
+        return new Estatus(true,"Actualizado con exito");
     }
 
 }
