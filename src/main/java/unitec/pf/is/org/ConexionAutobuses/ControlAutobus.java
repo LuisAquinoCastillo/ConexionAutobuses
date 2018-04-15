@@ -96,6 +96,17 @@ public class ControlAutobus {
         return new Estatus(true,"Actualizado con exito");
     }
 
+    //Buscar por ID
+    @CrossOrigin
+    @RequestMapping(value = {"/"},method = RequestMethod.GET, headers = {"Accept=application/json"})
+    public Optional<Autobus> buscarIdJSON(@RequestBody String json)throws Exception{
+
+        ObjectMapper mapper=new ObjectMapper();
+        Autobus autobus=mapper.readValue(json,Autobus.class);
+
+        return repoABus.findById(autobus.getIdAutobus());
+    }
+
     //Borrar
     @CrossOrigin
     @RequestMapping(value = {"/borrar"}, method = RequestMethod.DELETE, headers = {"Accept=application/json"})

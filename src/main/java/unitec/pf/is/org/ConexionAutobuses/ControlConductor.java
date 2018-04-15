@@ -1,6 +1,7 @@
 package unitec.pf.is.org.ConexionAutobuses;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -66,5 +67,42 @@ public class ControlConductor {
             return new Estatus(false,"Error: "+e);
         }
         return new Estatus(true, "Borrado exitoso");
+    }
+
+    //Metodo JSON para guardar desde la pagina web
+    @CrossOrigin
+    @RequestMapping(value = {"/"}, method = RequestMethod.POST, headers = {"Accept=application/json"})
+    public Estatus guardarJSON(@RequestBody String json)throws Exception{
+
+        ObjectMapper mapper=new ObjectMapper();
+        Conductor conductor=mapper.readValue(json,Conductor.class);
+
+        repoConduc.save(conductor);
+        return new Estatus(true, "Guardado con exito");
+    }
+
+    //Metodo JSON para actualizar desde la pagina web
+    @CrossOrigin
+    @RequestMapping(value = {"/"}, method = RequestMethod.PUT, headers = {"Accept=application/json"})
+    public Estatus actualizarJSON(@RequestBody String json)throws Exception{
+
+        ObjectMapper mapper=new ObjectMapper();
+        Conductor conductor=mapper.readValue(json,Conductor.class);
+
+        repoConduc.findById(conductor.getIdAutobus());
+
+        repoConduc.save(conductor);
+        return new Estatus(true,"Guardado con exito");
+    }
+
+    //Metodo JSON para poder buscar por ID
+    @CrossOrigin
+    @RequestMapping(value = {"/"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
+    public Optional<Conductor> buscarIdJSON(@RequestBody String json)throws Exception{
+
+        ObjectMapper mapper=new ObjectMapper();
+        Conductor conductor=mapper.readValue(json,Conductor.class);
+
+        return repoConduc.findById(conductor.getIdAutobus());
     }
 }
