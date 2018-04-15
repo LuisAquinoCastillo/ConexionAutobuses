@@ -96,4 +96,16 @@ public class ControlAutobus {
         return new Estatus(true,"Actualizado con exito");
     }
 
+    //Borrar
+    @CrossOrigin
+    @RequestMapping(value = {"/"}, method = RequestMethod.DELETE, headers = {"Accept=application/json"})
+    public Estatus borrarJSON(@RequestBody String json)throws Exception{
+
+        ObjectMapper mapper=new ObjectMapper();
+        Autobus autobus=mapper.readValue(json,Autobus.class);
+
+        repoABus.delete(autobus);
+        return new Estatus(true,"Borrado con exito");
+    }
+
 }

@@ -10,6 +10,7 @@ public class Roles {
     String terminalOrigen;
     String terminalDestino;
     String horaSalida;
+    String diasDisponibles;
 
     public Roles(){
 
@@ -21,19 +22,22 @@ public class Roles {
 
     String horaLlegada;
 
-    public Roles(String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada) {
+    public Roles(String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada, String diasDisponibles) {
         this.terminalOrigen = terminalOrigen;
         this.terminalDestino = terminalDestino;
         this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
+        this.diasDisponibles=diasDisponibles;
     }
 
-    public Roles(String idRol, String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada) {
+    public Roles(String idRol, String terminalOrigen, String terminalDestino, String horaSalida, String horaLlegada,
+                 String diasDisponibles) {
         this.idRol = idRol;
         this.terminalOrigen = terminalOrigen;
         this.terminalDestino = terminalDestino;
         this.horaSalida = horaSalida;
         this.horaLlegada = horaLlegada;
+        this.diasDisponibles=diasDisponibles;
     }
 
     public String getIdRol() {
@@ -74,5 +78,13 @@ public class Roles {
 
     public void setHoraLlegada(String horaLlegada) {
         this.horaLlegada = horaLlegada;
+    }
+
+    public String getDiasDisponibles() {
+        return diasDisponibles;
+    }
+
+    public void setDiasDisponibles(String diasDisponibles) {
+        this.diasDisponibles = diasDisponibles;
     }
 }

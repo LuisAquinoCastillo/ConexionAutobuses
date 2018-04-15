@@ -31,11 +31,12 @@ public class ControlRol {
 
     //Guardar ROL
     @CrossOrigin
-    @RequestMapping(value = {"/{terminalOrigen}/{terminalDestino}/{horaSalida}/{horaLlegada}"}, method = RequestMethod.GET, headers =
+    @RequestMapping(value = {"/{terminalOrigen}/{terminalDestino}/{horaSalida}/{horaLlegada}/{diasDisponibles}"}, method = RequestMethod.GET, headers =
             {"Accept=application/json"})
-    public Estatus guardarRol(@PathVariable String terminalOrigen, @PathVariable String terminalDestino, @PathVariable String horaSalida, @PathVariable String horaLlegada ){
+    public Estatus guardarRol(@PathVariable String terminalOrigen, @PathVariable String terminalDestino, @PathVariable String horaSalida, @PathVariable String horaLlegada,
+                              @PathVariable String diasDisponibles){
         try {
-            repoRol.save(new Roles(terminalOrigen, terminalDestino, horaSalida, horaLlegada));
+            repoRol.save(new Roles(terminalOrigen, terminalDestino, horaSalida, horaLlegada,diasDisponibles));
         }catch (Exception e){
             return new Estatus(false,"Error: "+e);
         }
@@ -46,10 +47,10 @@ public class ControlRol {
     @CrossOrigin
     @RequestMapping(value = {"/{idRol}/{terminalOrigen}/{terminalDestino}/{horaSalida}/{horaLlegada}"}, method = RequestMethod.GET, headers = {"Accept=application/json"})
     public Estatus actualizarRol(@PathVariable Integer idRol, @PathVariable String terminalOrigen, @PathVariable String terminalDestino,
-                                 @PathVariable String horaSalida, @PathVariable String horaLlegada){
+                                 @PathVariable String horaSalida, @PathVariable String horaLlegada, @PathVariable String diasDisponibles){
         try{
             String id=Integer.toString(idRol);
-            repoRol.save(new Roles(id,terminalOrigen,terminalDestino,horaSalida,horaLlegada));
+            repoRol.save(new Roles(id,terminalOrigen,terminalDestino,horaSalida,horaLlegada,diasDisponibles));
         }catch (Exception e){
             return new Estatus(false, "Erro: "+e);
         }
