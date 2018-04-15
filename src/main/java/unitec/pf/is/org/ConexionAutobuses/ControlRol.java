@@ -98,18 +98,6 @@ public class ControlRol {
         return new Estatus(true,"Actualizado con exito");
     }
 
-    //Metodo JSON para borrar
-    @CrossOrigin
-    @RequestMapping(value = {"/"}, method = RequestMethod.DELETE, headers = {"Accept=application/json"})
-    public Estatus borarJSON(@RequestBody String json)throws Exception{
 
-        ObjectMapper mapper=new ObjectMapper();
-        Roles roles=mapper.readValue(json,Roles.class);
-
-        repoRol.findById(roles.getIdRol());
-
-        repoRol.delete(roles);
-        return new Estatus(true,"Registro borrado con exito");
-    }
 
 }
