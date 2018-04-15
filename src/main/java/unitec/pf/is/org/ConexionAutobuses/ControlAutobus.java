@@ -98,7 +98,7 @@ public class ControlAutobus {
 
     //Borrar
     @CrossOrigin
-    @RequestMapping(value = {"/"}, method = RequestMethod.DELETE, headers = {"Accept=application/json"})
+    @RequestMapping(value = {"/borrar"}, method = RequestMethod.DELETE, headers = {"Accept=application/json"})
     public Estatus borrarJSON(@RequestBody String json)throws Exception{
 
         ObjectMapper mapper=new ObjectMapper();
