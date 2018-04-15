@@ -104,7 +104,7 @@ public class ControlAutobus {
         ObjectMapper mapper=new ObjectMapper();
         Autobus autobus=mapper.readValue(json,Autobus.class);
 
-        repoABus.delete(autobus);
+        repoABus.deleteById(autobus.getIdAutobus());
         return new Estatus(true,"Borrado con exito");
     }
 
